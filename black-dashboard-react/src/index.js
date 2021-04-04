@@ -59,6 +59,9 @@ import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 import { getCookie } from "helpers/auth";
 import Dashboard from "views/Dashboard";
+import Allimages from "layouts/Admin/Images/Allimages";
+import DashboardUser from "views/User/DashboardUser";
+import DashboardOwner from "views/Owner/DashboardOwner";
 const DashAdmin = ({match}) => {
   var ps;
 const cc=getCookie("role");
@@ -130,7 +133,7 @@ console.log(user);
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "HawasBia";
   };
   return(
     <BackgroundColorContext.Consumer>
@@ -141,8 +144,8 @@ console.log(user);
           <Sidebar
             routes={routes}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
+              outterLink: "https://localhost:3000",
+              text: "HawasBia",
               imgSrc: logo, 
             }}
             toggleSidebar={toggleSidebar}
@@ -157,6 +160,8 @@ console.log(user);
             <Switch>
         <Route path={match.path}  exact={true}  component={Dashboard} />
         <Route path={`${match.path}/profile`} exact={true} component={UserProfile} />
+        <Route path={`${match.path}/images`} exact={true} component={Allimages} />
+
 
     </Switch> 
 
@@ -242,7 +247,7 @@ const DashOwner = ({match}) => {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "HawasBia";
   };
   return(
     <BackgroundColorContext.Consumer>
@@ -253,8 +258,8 @@ const DashOwner = ({match}) => {
           <Sidebar
             routes={routesOwner}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
+              outterLink: "https://localhost:3000",
+              text: "HawasBia",
               imgSrc: logo, 
             }}
             toggleSidebar={toggleSidebar}
@@ -266,7 +271,7 @@ const DashOwner = ({match}) => {
               sidebarOpened={sidebarOpened}
             />
             <Switch>
-        <Route path={match.path}  exact={true}  component={Owner} />
+        <Route path={match.path}  exact={true}  component={DashboardOwner} />
         <Route path={`${match.path}/profile`} exact={true} component={UserProfile} />
 
     </Switch> 
@@ -353,7 +358,7 @@ const DashUser = ({match}) => {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "HawasBia";
   };
   return(
     <BackgroundColorContext.Consumer>
@@ -364,8 +369,8 @@ const DashUser = ({match}) => {
           <Sidebar
             routes={routesUser}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
+              outterLink: "https://localhost:3000",
+              text: "HawasBia",
               imgSrc: logo, 
             }}
             toggleSidebar={toggleSidebar}
@@ -377,7 +382,7 @@ const DashUser = ({match}) => {
               sidebarOpened={sidebarOpened}
             />
             <Switch>
-        <Route path={match.path}  exact={true}  component={User} />
+        <Route path={match.path}  exact={true}  component={DashboardUser} />
         <Route path={`${match.path}/profile`} exact={true} component={UserProfile} />
 
     </Switch> 

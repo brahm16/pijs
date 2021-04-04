@@ -213,6 +213,27 @@ exports.adminMiddleware = (req, res, next) => {
   });
 };
 
+exports.ownerMiddleware = (req, res, next) => {
+  User.findById({
+    _id: req.user._id
+  }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: 'User not found'
+      });
+    }
+
+    if (user.role !== 'owner') {
+      return res.status(400).json({
+        error: 'Owner resource. Access denied.'
+      });
+    }
+
+    req.profile = user;
+    next();
+  });
+};
+
 exports.forgotPasswordController = (req, res) => {
   const { email } = req.body;
   const errors = validationResult(req);

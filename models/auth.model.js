@@ -19,6 +19,31 @@ const userScheama = new mongoose.Schema(
       type: String,
       default:""
     },
+    firstname: {
+      type: String,
+      default:""
+    },
+    lastname: {
+      type: String,
+      default:""
+    },
+    address: {
+      type: String,
+      default:""
+    },
+    city:{
+      type:String,
+      default:""
+    },
+    country:{
+      type:String,
+      default:""
+    },
+    zipcode:{
+      type:String,
+      default:""
+    },
+
     hashed_password: {
       type: String,
       required: true

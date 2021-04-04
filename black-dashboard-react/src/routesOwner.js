@@ -26,63 +26,64 @@ import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 
-var routesOwner = [
+var routes = [
   {
     path: "/",
     name: "Dashboard",
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-pie-36",
-    component: DashboardOwner,
+    component: Dashboard,
     layout: "/owner",
   },
   {
-    path: "/icons",
-    name: "Icons",
-    rtlName: "الرموز",
-    icon: "tim-icons icon-atom",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
-    path: "/map",
-    name: "Map",
-    rtlName: "خرائط",
-    icon: "tim-icons icon-pin",
-    component: Map,
-    layout: "/admin",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-  {
-    path: "/user-profile",
+    path: "/profile",
     name: "User Profile",
     rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-single-02",
     component: UserProfile,
-    layout: "/admin",
+    layout: "/owner",
+  },
+
+  {
+    path: "/products",
+    name: "Products",
+    rtlName: "خرائط",
+    icon: "tim-icons icon-pin",
+    component: Map,
+    layout: "/owner",
   },
   {
-    path: "/tables",
-    name: "Table List",
-    rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
-    path: "/login",
-    name: "login",
-    rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: Login,
-    layout: "/admin",
+    path: "/events",
+    name: "Events",
+    rtlName: "إخطارات",
+    icon: "tim-icons icon-calendar-60",
+    component: Notifications,
+    layout: "/owner",
   },
  
+  {
+    path: "/circuits",
+    name: "Circuit",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-map-big",
+    component: TableList,
+    layout: "/owner",
+  },
+  {
+    path: "/services",
+    name: "Services",
+    rtlName: "طباعة",
+    icon: "tim-icons icon-bullet-list-67",
+    component: Typography,
+    layout: "/owner",
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    rtlName: "ار تي ال",
+    icon: "tim-icons icon-badge",
+    component: Rtl,
+    layout: "/rtl",
+  },
 ];
-export default routesOwner;
+export default routes;

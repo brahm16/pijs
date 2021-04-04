@@ -41,7 +41,7 @@ const Login = ({ history }) => {
       else if (isAuth() && isAuth().role === "owner")         history.push("/owner")
 
       else if (isAuth() && isAuth().role === "subscriber")
-      history.push("/user")
+      history.push("/subscriber")
 
       else  history.push("/login")
     });
@@ -94,7 +94,7 @@ const Login = ({ history }) => {
             else if (isAuth() && isAuth().role === "owner")
             history.push("/owner")
             else if (isAuth() && isAuth().role === "subscriber")
-            history.push("/user")
+            history.push("/subscriber")
             else  history.push("/login")
             toast.success(`Hey ${res.data.user.name}, Welcome back!`);
           });
@@ -119,7 +119,7 @@ const Login = ({ history }) => {
   return (
     <div className="h-full bg-gray-100 text-gray-900">
       {isAuth() && isAuth().role==="admin" ? <Redirect to="/admin" /> : null}
-      {isAuth() && isAuth().role==="subscriber" ? <Redirect to="/user" /> : null}
+      {isAuth() && isAuth().role==="subscriber" ? <Redirect to="/subscriber" /> : null}
       {isAuth() && isAuth().role==="owner" ? <Redirect to="/owner" /> : null}
 
       <ToastContainer />

@@ -4,12 +4,13 @@ const multer = require("multer");
 
 
 // import controller
-const { requireSignin, adminMiddleware } = require('../controllers/auth.controller');
+const { requireSignin, adminMiddleware,ownerMiddleware } = require('../controllers/auth.controller');
 const { readController, updateController } = require('../controllers/user.controller');
 const uploadController = require('../controllers/upload.controller');
 
 router.get('/user/:id', requireSignin, readController);
 router.put('/user/update', requireSignin, updateController);
+router.put('/owner/update', requireSignin, ownerMiddleware,updateController);
 router.put('/admin/update', requireSignin, adminMiddleware, updateController);
 const path = require("path");
 

@@ -1,5 +1,6 @@
 const User = require('../models/auth.model');
 const expressJwt = require('express-jwt');
+const { use } = require('../routes/images');
 
 exports.readController = (req, res) => {
     const userId = req.params.id;
@@ -18,7 +19,7 @@ exports.readController = (req, res) => {
 exports.updateController = (req, res) => {
     
     // console.log('UPDATE USER - req.user', req.user, 'UPDATE DATA', req.body);
-    const { name, password,bio,pic } = req.body;
+    const { name, password,bio,firstname,lastname,address,country,city,zipcode,pic } = req.body;
 
     User.findOne({ _id: req.user._id }, (err, user) => {
         if (err || !user) {
@@ -45,6 +46,12 @@ exports.updateController = (req, res) => {
         }
         user.bio=bio;
         user.pic=pic;
+        user.lastname=lastname;
+        user.firstname=firstname;
+        user.address=address;
+        user.country=country;
+        user.city=city;
+        user.zipcode=zipcode;
 
         user.save((err, updatedUser) => {
             if (err) {

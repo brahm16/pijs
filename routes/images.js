@@ -28,10 +28,7 @@ var fileFilter = (req , file , cb)=>{
 
     router.get('/', function(req, res, next) {
         Image.find(function(err,data){
-          res.status(200).json({
-            message: 'get methode work',
-            data
-        }); 
+          res.json(data);
         });
         
       });
@@ -51,6 +48,28 @@ var fileFilter = (req , file , cb)=>{
             message : "post image work",
             createdImage: image
           });
+      });
+
+      router.get("/:imageId", (req , res , next) =>{
+        var id = req.params.imageId;
+        Image.findById(id , function(err, data){
+          res.status(200).json({
+            message: ' methode get by id work',
+            data
+        }); 
+        });
+      });
+      
+      router.delete("/:imageId", (req , res , next)=>{
+        var id = req.params.imageId;
+      
+        Image.remove({_id : id}).then(result =>{
+          console.log("delete ok ...");
+        }).catch(err => console.log(err));
+      
+        res.status(200).json({
+          message : "delete image work"
+        });
       });
 
 module.exports = router;

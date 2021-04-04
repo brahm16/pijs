@@ -40,10 +40,19 @@ function UserProfile({history}) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    bio:'',
+    firstname:'',
+    lastname:'',
+    address:'',
+    city:'',
+    country:'',
+    zipcode:'',
+    pic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
     password1: '',
     textChange: 'Update',
     role: ''
   });
+  let pics=formData.pic;
 
   useEffect(() => {
     loadProfile();
@@ -58,8 +67,10 @@ function UserProfile({history}) {
         }
       })
       .then(res => {
-        const { role, name, email } = res.data;
-        setFormData({ ...formData, role, name, email });
+        const { role, name, email,bio,firstname,lastname,address,city,country,zipcode } = res.data;
+       
+        setFormData({ ...formData, role, name, email,bio,firstname,lastname,address,city,country,zipcode });
+        console.log("bio"+formData.bio);
       })
       .catch(err => {
         toast.error(`Error To Your Information ${err.response.statusText}`);
@@ -70,7 +81,7 @@ function UserProfile({history}) {
         }
       });
   };
-  const { name, email, password1, textChange, role } = formData;
+  const { name, email,bio ,firstname,lastname,address,city,country,zipcode,pic,password1, textChange, role } = formData;
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
   };
@@ -79,12 +90,22 @@ function UserProfile({history}) {
     console.log(token);
     e.preventDefault();
     setFormData({ ...formData, textChange: 'Submitting' });
+    let r="";
+    role==="subscriber"? r="user":r=role
     axios
       .put(
-        `${process.env.REACT_APP_API_URL}/admin/update`,
+        `${process.env.REACT_APP_API_URL}/${r}/update`,
         {
           name,
           email,
+          bio,
+          pics,
+          firstname,
+          lastname,
+          address,
+          city,
+          country,
+          zipcode,
           password: password1
         },
         {
@@ -113,7 +134,7 @@ function UserProfile({history}) {
                 <h5 className="title">Edit Profile</h5>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col className="pr-md-1" md="5">
                       <FormGroup>
@@ -132,7 +153,6 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>Username</label>
                         <Input
-                          defaultValue="michael23"
                           type="text"
                           placeholder='Name'
                           onChange={handleChange('name')}
@@ -159,8 +179,10 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>First Name</label>
                         <Input
-                          defaultValue="Mike"
-                          placeholder="Company"
+                          defaultValue="aa"
+                          value={firstname}
+                          placeholder="Firstname"
+                          onChange={handleChange('firstname')}
                           type="text"
                         />
                       </FormGroup>
@@ -169,8 +191,9 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>Last Name</label>
                         <Input
-                          defaultValue="Andrew"
+                          value={lastname}
                           placeholder="Last Name"
+                          onChange={handleChange('lastname')}
                           type="text"
                         />
                       </FormGroup>
@@ -181,8 +204,9 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>Address</label>
                         <Input
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                          value={address}
                           placeholder="Home Address"
+                          onChange={handleChange('address')}
                           type="text"
                         />
                       </FormGroup>
@@ -193,8 +217,9 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>City</label>
                         <Input
-                          defaultValue="Mike"
+                          value={city}
                           placeholder="City"
+                          onChange={handleChange('city')}
                           type="text"
                         />
                       </FormGroup>
@@ -203,8 +228,9 @@ function UserProfile({history}) {
                       <FormGroup>
                         <label>Country</label>
                         <Input
-                          defaultValue="Andrew"
+                          value={country}
                           placeholder="Country"
+                          onChange={handleChange('country')}
                           type="text"
                         />
                       </FormGroup>
@@ -212,7 +238,9 @@ function UserProfile({history}) {
                     <Col className="pl-md-1" md="4">
                       <FormGroup>
                         <label>Postal Code</label>
-                        <Input placeholder="ZIP Code" type="number" />
+                        <Input placeholder="ZIP Code" type="number" value={zipcode}
+                         onChange={handleChange('zipcode')}
+                        />
                       </FormGroup>
                     </Col>
                   </Row>
@@ -222,21 +250,22 @@ function UserProfile({history}) {
                         <label>About Me</label>
                         <Input
                           cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
+                          value={bio}
                           placeholder="Here can be your description"
+                          onChange={handleChange('bio')}
                           rows="4"
                           type="textarea"
                         />
                       </FormGroup>
                     </Col>
+                    <Button className="btn-fill" color="primary" type="submit">
+                  Save
+                </Button>
                   </Row>
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="btn-fill" color="primary" type="submit">
-                  Save
-                </Button>
+                
               </CardFooter>
             </Card>
           </Col>

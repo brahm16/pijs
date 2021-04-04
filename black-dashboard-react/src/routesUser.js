@@ -28,45 +28,46 @@ import UserProfile from "views/UserProfile.js";
 
 var routesUser = [
   {
-    path: "/",
-    name: "Dashboard",
-    rtlName: "لوحة القيادة",
-    icon: "tim-icons icon-chart-pie-36",
-    component: DashboardUser,
-    layout: "/subscriber",
-  },
-  {
-    path: "/icons",
-    name: "Icons",
-    rtlName: "الرموز",
-    icon: "tim-icons icon-atom",
-    component: Icons,
-    layout: "/subscriber",
-  },
-  {
-    path: "/map",
-    name: "Map",
-    rtlName: "خرائط",
-    icon: "tim-icons icon-pin",
-    component: Map,
-    layout: "/subscriber",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-  {
-    path: "/user-profile",
+    path: "/profile",
     name: "User Profile",
     rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-single-02",
     component: UserProfile,
-    layout: "/admin",
+    layout: "/subscriber",
   },
+  {
+    path: "/",
+    name: "Orders",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-basket-simple",
+    component: DashboardUser,
+    layout: "/subscriber",
+  },
+  {
+    path: "/products",
+    name: "Products",
+    rtlName: "الرموز",
+    icon: "tim-icons icon-bag-16",
+    component: Icons,
+    layout: "/subscriber",
+  },
+  {
+    path: "/events",
+    name: "Our Events",
+    rtlName: "خرائط",
+    icon: "tim-icons icon-calendar-60",
+    component: Map,
+    layout: "/subscriber",
+  },
+  {
+    path: "/guesthouse",
+    name: "Guest House",
+    rtlName: "إخطارات",
+    icon: "tim-icons icon-bank",
+    component: Notifications,
+    layout: "/subscriber",
+  },
+
 
  
 ];
